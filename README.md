@@ -19,21 +19,21 @@ Qt (https://www.qt.io/)
 Solution folders
 ----------------
 
-ProjectGroup.groupproj : Hold both Delphi projets
+ProjectGroup.groupproj : Hold both Delphi projets  
 README.md : this very file :)
 
-SweetDemo.dpr : Delphi demo program source code 
-SweetDemo.dproj : Delphi project
+SweetDemo.dpr : Delphi demo program source code  
+SweetDemo.dproj : Delphi project  
 
-Sweet.dpr:  Delphi library source code 
-Sweet.dproj : Delphi project
+Sweet.dpr:  Delphi library source code  
+Sweet.dproj : Delphi project  
 
-SweetWrapper.pas : Used by SweetDemo.dpr to reach the library
-SweetWrapper.h : Sample include for a C project
-SweetWrapper.hpp : Sample include for a C++ project
+SweetWrapper.pas : Used by SweetDemo.dpr to reach the library  
+SweetWrapper.h : Sample include for a C project  
+SweetWrapper.hpp : Sample include for a C++ project  
 
-Sweet.Common.pas : Shared between both Delphi projects
-Sweet.Widget.pas : Hold the widgets logic
+Sweet.Common.pas : Shared between both Delphi projects  
+Sweet.Widget.pas : Hold the widgets logic  
 
 Quick start
 -----------
