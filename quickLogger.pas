@@ -46,7 +46,7 @@ type
   TDictionaryOfThread = TDictionary<cardinal, TStackOfString>; // ...Per thread !
 
 var
-  logPadlock, colPadlock : TObject;
+  logPadlock, colPadlock : TObject; // We should avoid having two locks (in order to avoid any deadlock situations)
   callStacks : TDictionaryOfThread;
   folder, filename, dtFormat : string;
   level : TLogLevel;
@@ -255,8 +255,8 @@ end;
 procedure logEnter(const location : string);
 begin
   try
+    logVerbose(format('Entering %s', [location]));
     getThreadCallStack().Push(location);
-    logVerbose(format('Entering',[location]));
   except
     // Nothing to do...
   end;
@@ -270,7 +270,7 @@ begin
   try
     callStack := getThreadCallStack();
     if (callStack.Count > 0) then begin
-      logVerbose(format('Leaving',[callStack.Pop()]));
+      logVerbose(format('Leaving %s', [callStack.Pop()]));
     end;
   except
     // Nothing to do...
@@ -301,13 +301,13 @@ var
   callStack : TStackOfString;
 
 begin
-  logPadlock.free();
-  colPadlock.free();
+  logPadlock.Free();
+  colPadlock.Free();
   if (assigned(callStacks)) then begin
     for callStack in callStacks.Values do begin
       callStack.free();
     end;
-    callStacks.free();
+    callStacks.Free();
   end;
 end;
 

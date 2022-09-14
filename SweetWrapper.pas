@@ -19,12 +19,16 @@ type
     class function PostMessage(const msg : TSweet.RMessage) : integer;
   end;
 
+function SweetSimpleAddition(const A : integer; const B : integer) : integer; stdcall; external 'Sweet.dll';
+function SweetLoadWindow(const fullFilename : PAnsiChar) : integer; stdcall; external 'Sweet.dll';
+
 implementation
 
 uses
   System.SysUtils;
 
-function SweetLoadWindow(const fullFilename : PAnsiChar) : integer; stdcall; external 'Sweet.dll';
+// Implicit linking, not need to call LoadLibrary https://stackoverflow.com/questions/10405991/calling-functions-from-a-c-dll-in-delphi
+//function SweetLoadWindow(const fullFilename : PAnsiChar) : integer; stdcall; external 'Sweet.dll';
 function SweetRunApplication(const windowHandle : integer) : integer; stdcall; external 'Sweet.dll';
 function SweetBindEvent(const windowHandle : integer; const widgetHandle : integer; const eventId : integer; const eventHandler : TSweet.TEventHandler) : integer; stdcall; external 'Sweet.dll';
 function SweetPostMessage(const msg : TSweet.RMessage) : integer; stdcall; external 'Sweet.dll';
@@ -35,7 +39,7 @@ var
 
 begin
   try
-    StrPCopy(s, AnsiString(fullFilename));
+    StrPCopy(s, AnsiString(fullFilename)); // Compile but wrong ?
     result := SweetLoadWindow(s);
     if (result = -1) then begin
       raise Exception.Create('Unable to load window !');

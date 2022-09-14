@@ -105,7 +105,18 @@ begin
   {$ifdef DEBUG} finally logLeave(); end; {$endif DEBUG}
 end;
 
+function SimpleAddition(const A : integer; const B : integer) : integer; stdcall;
+begin
+  //logParameters('0', '', '', '1');
+  {$ifdef DEBUG} logEnter('SimpleAddition'); try {$endif DEBUG}
+  result := A + B;
+  writeln(Format('result = %s', [IntToStr(result)]));
+  {$ifdef DEBUG} finally logLeave(); end; {$endif DEBUG}
+  //logParameters('6', '', '', '1');
+end;
+
 exports
+  SimpleAddition name 'SweetSimpleAddition',
   LoadWindow name 'SweetLoadWindow',
   RunApplication name 'SweetRunApplication',
   BindEvent name 'SweetBindEvent',
@@ -149,6 +160,7 @@ end;
 
 procedure TFakeTimerThread.Execute();
 begin
+  {$ifdef DEBUG} logEnter('TFakeTimerThread.Execute'); {$endif DEBUG}
   Sleep(3000);
 
   TMonitor.Enter(lock);
@@ -159,17 +171,19 @@ begin
   end;
 
   FreeOnTerminate := true; // Lost in space anyway :( But why ?
+  {$ifdef DEBUG} logLeave(); {$endif DEBUG}
 end;
 
 procedure prelude();
 begin
-  logParameters('6', '', '', '1'); // Don't log ! Crazy errors when dealing with file IO... Due to dll ?
+  logParameters('0', '', '', '1');
   {$ifdef DEBUG} logEnter('prelude'); {$endif DEBUG}
   lock := TObject.create();
   eternalLoop := true;
   TFakeTimerThread.Create(false);
 
   {$ifdef DEBUG} logLeave(); {$endif DEBUG}
+  //logParameters('6', '', '', '1'); // Don't log anymore ! Crazy errors when dealing with file IO... Due to dll ?
 end;
 
 procedure postlude();
