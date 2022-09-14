@@ -1,0 +1,27 @@
+{
+	Class: "Window",
+	Caption: "Hello World",
+	Left: 100,
+	Top: 100,
+	Width: 200,
+	Heigth:200,
+	Childs: 
+	[
+		{
+			Class: "Layout",
+			Handle: 0,
+			HCellCount: 1,
+			VCellCount: 1,
+			Childs:
+			[
+				{
+					Class: "Button",
+					Handle: 1,
+					Caption: "Press me to end this amazing demo !-)",
+					HCell: 0,
+					VCell: 0
+				}
+			]
+		}    	
+	]
+}

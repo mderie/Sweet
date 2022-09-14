@@ -1,0 +1,48 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <PropertyGroup>
+        <ProjectGuid>{760F6EAB-A7B0-473C-8823-EE7CA6354197}</ProjectGuid>
+    </PropertyGroup>
+    <ItemGroup>
+        <Projects Include="SweetDemo.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="Sweet.dproj">
+            <Dependencies/>
+        </Projects>
+    </ItemGroup>
+    <ProjectExtensions>
+        <Borland.Personality>Default.Personality.12</Borland.Personality>
+        <Borland.ProjectType/>
+        <BorlandProject>
+            <Default.Personality/>
+        </BorlandProject>
+    </ProjectExtensions>
+    <Target Name="SweetDemo">
+        <MSBuild Projects="SweetDemo.dproj"/>
+    </Target>
+    <Target Name="SweetDemo:Clean">
+        <MSBuild Projects="SweetDemo.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="SweetDemo:Make">
+        <MSBuild Projects="SweetDemo.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="sweet">
+        <MSBuild Projects="Sweet.dproj"/>
+    </Target>
+    <Target Name="sweet:Clean">
+        <MSBuild Projects="Sweet.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="sweet:Make">
+        <MSBuild Projects="sweet.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="Build">
+        <CallTarget Targets="SweetDemo;sweet"/>
+    </Target>
+    <Target Name="Clean">
+        <CallTarget Targets="SweetDemo:Clean;sweet:Clean"/>
+    </Target>
+    <Target Name="Make">
+        <CallTarget Targets="SweetDemo:Make;sweet:Make"/>
+    </Target>
+    <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
+</Project>
