@@ -35,8 +35,10 @@ SweetWrapper.hpp : Sample include for a C++ project
 Sweet.Common.pas : Shared between both Delphi projects
 Sweet.Widget.pas : Hold the widgets logic
 
-Quick start / The Win32\Debug folder
-------------------------------------
+Quick start
+-----------
+
+In the Win32\Debug folder
 
 HelloWorld.json : One example file written in json format holding the definition of
 a simple window with a single button.
@@ -68,6 +70,11 @@ License
 -------
 
 Smileware
+
+Miscelleanous
+-------------
+
+Made with Delphi 10.4 (Sydney)
 
 Greetings
 ---------
