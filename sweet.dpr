@@ -43,7 +43,7 @@ begin
 
   s := StrPas(fullFilename);
   //json := TJSONObject.ParseJSONValue(pchar(TFile.ReadAllText(string(s))), 0);
-  logDebug(Format('fullFilename = %s succesfuly loaded', [string(fullFilename)]));
+  logDebug(Format('fullFilename = %s succesfuly loaded', [string(fullFilename)])); // Cast is ok in this case
 
   result := 0;
 

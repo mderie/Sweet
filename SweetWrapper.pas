@@ -36,11 +36,15 @@ function SweetPostMessage(const msg : TSweet.RMessage) : integer; stdcall; exter
 class function TSweetHelper.LoadWindow(const fullFilename : string) : integer;
 var
   s : PAnsiChar;
+  //s : rawByteString; // Or AnsiString (since it is alias...
 
 begin
   try
-    StrPCopy(s, AnsiString(fullFilename)); // Compile but wrong ?
+    // Compile but wrong ?
+    //StrPCopy(s, AnsiString(fullFilename));
+    s := PAnsiChar(AnsiString(fullFilename)); // Ok but WTF ?
     result := SweetLoadWindow(s);
+    //result := SweetLoadWindow(UTF8Encode(fullFilename));
     if (result = -1) then begin
       raise Exception.Create('Unable to load window !');
     end;
