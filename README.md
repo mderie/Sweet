@@ -59,12 +59,12 @@ http://delphi.cjcsoft.net//viewthread.php?tid=47384 & http://www.gtdelphicompone
 Roadmap
 -------
 
-Fix all the issues linked to dll hell ?
+Fix all the issues linked to dll hell ? Done, issues where due to bad string conversions :(
 
 Achievements
 ------------
 
-Made in one day !
+Made in one day ! A bit more in order to fix the known issues.
 
 License
 -------
